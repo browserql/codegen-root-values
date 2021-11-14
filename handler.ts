@@ -10,6 +10,7 @@ interface Schema {
 }
 
 async function findResolvers(dir: string) {
+  console.log({dir})
   const files = await readdir(dir);
   const resolvers: string[] = [];
 
