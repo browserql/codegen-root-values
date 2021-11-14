@@ -6,6 +6,7 @@ interface Schema {
   document: DocumentNode;
   arguments: {
     directory: string;
+    base: string
   };
 }
 
@@ -42,7 +43,7 @@ export async function handler({ arguments: args }: Schema) {
   return resolvers
     .map((resolver) => {
       const name = last(resolver.split('/'))?.replace(/\.ts$/, '');
-      return `export { ${name} } from '${relative(process.cwd(), resolver.replace(/\.ts$/, ''))}'`;
+      return `export { ${name} } from '${args.base}/${relative(process.cwd(), resolver.replace(/\.ts$/, ''))}'`;
     })
     .join('\n');
 }
