@@ -1,6 +1,6 @@
 import { readdir, stat } from 'fs/promises';
 import { DocumentNode } from 'graphql';
-import { join, resolve } from 'path';
+import { join, relative } from 'path';
 
 interface Schema {
   document: DocumentNode;
@@ -42,7 +42,7 @@ export async function handler({ arguments: args }: Schema) {
   return resolvers
     .map((resolver) => {
       const name = last(resolver.split('/'))?.replace(/\.ts$/, '');
-      return `export { ${name} } from '${resolve(process.cwd(), resolver.replace(/\.ts$/, ''))}'`;
+      return `export { ${name} } from '${relative(process.cwd(), resolver.replace(/\.ts$/, ''))}'`;
     })
     .join('\n');
 }
