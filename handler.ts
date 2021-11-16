@@ -1,4 +1,5 @@
 import { readdir, stat } from 'fs/promises';
+// @ts-expect-error
 import { DocumentNode } from 'graphql';
 import { join, relative } from 'path';
 
