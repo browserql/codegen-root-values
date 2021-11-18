@@ -1,6 +1,6 @@
 {
   "name": "@browserql/codegen-root-values",
-  "version": "1.0.7",
+  "version": "1.0.8",
   "main": "handler.js",
   "license": "MIT",
   "scripts": {
